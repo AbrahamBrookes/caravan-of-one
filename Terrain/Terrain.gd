@@ -51,7 +51,7 @@ func gen_mesh():
 			var vertex = Vector3(x, self.terrain_data[position], z)
 			vertices.append(vertex)
 			surface_tool.add_vertex(vertex)
-			add_sphere(position, self.terrain_data[position])
+			addTerrainVertex(position, self.terrain_data[position])
 	
 	# now, add the middle vertices
 	var middleVertices = []
@@ -103,7 +103,7 @@ func gen_mesh():
 	ResourceSaver.save(mesh, "res://Terrain/terrain_mesh.tres", ResourceSaver.FLAG_COMPRESS)
 
 	
-func add_sphere(pos:Vector2, height:float):
+func addTerrainVertex(pos:Vector2, height:float):
 	# instantiate the child scene
 	var sphere = TerrainVertexScn.instantiate()
 	# tell it which vertex it refers to
