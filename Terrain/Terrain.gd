@@ -2,6 +2,7 @@
 extends MeshInstance3D
 
 var TerrainVertexScn = preload("res://Terrain/TerrainVertex.tscn")
+var TerrainSquareScn = preload("res://Terrain/TerrainSquare.tscn")
 
 @export var width = 20
 @export var length = 20
@@ -31,8 +32,10 @@ func _ready():
 	gen_mesh()
 	
 func gen_mesh():
-	# clear all the TerrainVertexes
+	# clear all the TerrainVertexes and TerrainSquares
 	for child in $TerrainVertexes.get_children():
+		child.queue_free()
+	for child in $TerrainSquares.get_children():
 		child.queue_free()
 
 	var surface_tool = SurfaceTool.new()
@@ -52,6 +55,7 @@ func gen_mesh():
 			vertices.append(vertex)
 			surface_tool.add_vertex(vertex)
 			addTerrainVertex(position, self.terrain_data[position])
+			addTerrainSquare(position, self.terrain_data[position])
 	
 	# now, add the middle vertices
 	var middleVertices = []
@@ -102,7 +106,7 @@ func gen_mesh():
 	# save the mesh as a resource
 	ResourceSaver.save(mesh, "res://Terrain/terrain_mesh.tres", ResourceSaver.FLAG_COMPRESS)
 
-	
+# add a vertex scene that the user is able to click for actions
 func addTerrainVertex(pos:Vector2, height:float):
 	# instantiate the child scene
 	var sphere = TerrainVertexScn.instantiate()
@@ -114,7 +118,25 @@ func addTerrainVertex(pos:Vector2, height:float):
 	$TerrainVertexes.add_child(sphere)
 	# connect the modifyVertex signal to our onModifyVertex func
 	sphere.modifyVertex.connect(onModifyVertex)
+
+# add a grid square that the user is able to click for actions
+func addTerrainSquare(pos:Vector2, height:float):
+	var square = TerrainSquareScn.instantiate()
 	
+	square.top_left = self.terrain_data[pos] if self.terrain_data.has(pos) else 0
+	square.top_right = self.terrain_data[pos + Vector2(1, 0)] if self.terrain_data.has(pos + Vector2(1, 0)) else 0
+	square.bottom_left = self.terrain_data[pos + Vector2(0, 1)] if self.terrain_data.has(pos + Vector2(0, 1)) else 0
+	square.bottom_right = self.terrain_data[pos + Vector2(1, 1)] if self.terrain_data.has(pos + Vector2(1, 1)) else 0
+
+	# set its actual position
+	square.position = Vector3(pos.x, 0.01, pos.y)
+	# make it a child of this scene
+	$TerrainSquares.add_child(square)
+	
+	# run its internal gen_mesh func
+	square.gen_mesh()
+
+
 func onModifyVertex(vertex: Vector2, modify: float):
 	print("Modifying vertex: ", vertex, " by: ", modify)
 
@@ -130,12 +152,7 @@ func onModifyVertex(vertex: Vector2, modify: float):
 	self.terrain_data[vertex] += modify
 	
 	# get all the middle verts that touch this vertex
-	var middleVerts = [
-		Vector2(vertex.x -0.5, vertex.y -0.5),
-		Vector2(vertex.x +0.5, vertex.y -0.5),
-		Vector2(vertex.x -0.5, vertex.y +0.5),
-		Vector2(vertex.x +0.5, vertex.y +0.5)
-	]
+	var middleVerts = getSurroundingMiddleVerts(vertex)
 
 	# for each of those middle verts, check all of its surrounding non-middle verts:
 	for middleVert in middleVerts:
@@ -204,6 +221,18 @@ func surroundingVertsTooSteep(vertex: Vector2, modify: float):
 					if self.terrain_data[pos] > self.terrain_data[vertex]:
 						return true
 	return false
+
+
+
+# given a vert position, get all the connecting middle vert positions
+# note this works when converting from middle to edge and edge to middle, it's the same calculation.
+func getSurroundingMiddleVerts(pos: Vector2):
+	return [
+		Vector2(pos.x -0.5, pos.y -0.5),
+		Vector2(pos.x +0.5, pos.y -0.5),
+		Vector2(pos.x -0.5, pos.y +0.5),
+		Vector2(pos.x +0.5, pos.y +0.5)
+	]
 
 ### debug - allow for debug rendering (press p to cycle through)
 func _init():
