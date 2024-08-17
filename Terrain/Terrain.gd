@@ -117,8 +117,6 @@ func add_sphere(pos:Vector2, height:float):
 	
 func onModifyVertex(vertex: Vector2, modify: float):
 	print("Modifying vertex: ", vertex, " by: ", modify)
-	# if any of the surrounding verts are more than 1 step in the opposite direction, move them too
-	#modifySurroundingVerts(vertex, modify)
 
 	# don't allow modifying middle verts
 	if abs(vertex.x - round(vertex.x)) == 0.5 and abs(vertex.y - round(vertex.y)) == 0.5:
@@ -191,12 +189,6 @@ func onModifyVertex(vertex: Vector2, modify: float):
 
 	
 	gen_mesh()
-
-func sum(arr):
-	var total = 0
-	for value in arr:
-		total += value
-	return total
 	
 func surroundingVertsTooSteep(vertex: Vector2, modify: float):
 	for x in range(-1, 2):
@@ -211,25 +203,11 @@ func surroundingVertsTooSteep(vertex: Vector2, modify: float):
 				if modify < 0:
 					if self.terrain_data[pos] > self.terrain_data[vertex]:
 						return true
+	return false
 
-func modifySurroundingVerts(vertex: Vector2, modify: float):
-	for x in range(-1, 2):
-		for z in range(-1, 2):
-			var pos = Vector2(vertex.x + x, vertex.y + z)
-			if self.terrain_data.has(pos):
-				# if moving up
-				if modify > 0:
-					if self.terrain_data[pos] < self.terrain_data[vertex]:
-						self.terrain_data[pos] += modify
-				# if moving down
-				if modify < 0:
-					if self.terrain_data[pos] > self.terrain_data[vertex]:
-						self.terrain_data[pos] += modify
-			
+### debug - allow for debug rendering (press p to cycle through)
 func _init():
 	RenderingServer.set_debug_generate_wireframes(true)
-
-
 
 func _input(event):
 			
