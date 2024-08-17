@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwbi1480dq6sk"]
+
+[ext_resource type="Script" path="res://Terrain/Terrain.gd" id="1_jdwsm"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_306oq"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 1, 1e-05, 1),
+"format": 4099,
+"index_count": 12,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0, 3, 0, 1, 0, 4, 0, 5, 0, 6, 0, 7, 0),
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 127, 255, 255, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63, 255, 127, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 255, 127, 255, 255, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63, 255, 127, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 127, 255, 255)
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8b4o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pgevn"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Terrain" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_306oq")
+surface_material_override/0 = SubResource("StandardMaterial3D_f8b4o")
+script = ExtResource("1_jdwsm")
+width = 10
+length = 10
+
+[node name="TerrainVertexes" type="Node3D" parent="Terrain"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0.529216, -0.468968, 0, 0.663221, 0.748424, 0.707107, -0.529216, 0.468968, -5.01368, 14.5629, 12.6997)
+projection = 1
+size = 25.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.30651, -0.951868, 0, 0.951868, 0.30651, 5.77611, 0.935074, 3.6763)
+light_color = Color(1, 0, 1, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.653077, 0.757291, 0, -0.757291, 0.653077, 7.8089, 8.39634, 15.0395)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0146952, 0, -0.999892, 0.27084, 0.962616, -0.00398046, 0.962512, -0.270869, -0.0141458, 8.98329, 1.21002, 10.2285)
+mesh = SubResource("BoxMesh_pgevn")
