@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmutsunwarngx"]
+
+[ext_resource type="Script" path="res://Decorators/Farms/Labourers/Farmer.gd" id="1_dq3o0"]
+
+[node name="Farmer" type="Node3D"]
+script = ExtResource("1_dq3o0")

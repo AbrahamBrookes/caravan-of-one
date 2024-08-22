@@ -10,3 +10,4 @@ class_name Item
 @export var weight: float
 @export var size: float
 @export var base_price: float
+@export var description: String

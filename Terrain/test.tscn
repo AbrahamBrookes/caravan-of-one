@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Terrain/Terrain.gd" id="1_jdwsm"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_oo7uy"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xjtux"]
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 9, 1e-05, 9),
 "format": 4099,
@@ -18,7 +18,7 @@ _surfaces = [{
 [node name="Node3D" type="Node3D"]
 
 [node name="Terrain" type="MeshInstance3D" parent="."]
-mesh = SubResource("ArrayMesh_oo7uy")
+mesh = SubResource("ArrayMesh_xjtux")
 surface_material_override/0 = SubResource("StandardMaterial3D_f8b4o")
 script = ExtResource("1_jdwsm")
 width = 10

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ysqfq1y4b6e6"]
+
+[ext_resource type="Script" path="res://Decorators/Farms/FarmPlot.gd" id="1_qhp3e"]
+
+[node name="Field" type="Node2D"]
+script = ExtResource("1_qhp3e")

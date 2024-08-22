@@ -8,3 +8,4 @@ name = "Tomato"
 weight = 0.2
 size = 0.5
 base_price = 1.2
+description = "Delicious, juicy, ripe tomatoes. A classical flavour hit!"

@@ -1,3 +1,4 @@
+class_name TerrainSquare
 extends MeshInstance3D
 
 # the heights of the surrounding verts
@@ -7,6 +8,7 @@ var bottom_left
 var bottom_right
 
 # the mesh for this object is similar to the mesh for the terrain object, but it wraps to a single grid square
+# and we will only ever show the outline so we don't need the middle vert fanciness here
 func gen_mesh():
 	var surface_tool = SurfaceTool.new()
 	surface_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -47,4 +49,5 @@ func on_mouse_entered():
 func on_mouse_exited():
 	# hide the MeshInstance3D child
 	$MeshInstance3D.visible = false
-	
+
+
