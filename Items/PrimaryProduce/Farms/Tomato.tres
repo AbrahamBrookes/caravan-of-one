@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://klndqgbroffi"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_6hlsr"]
+
+[resource]
+script = ExtResource("1_6hlsr")
+name = "Tomato"
+weight = 0.2
+size = 0.5
+base_price = 1.2

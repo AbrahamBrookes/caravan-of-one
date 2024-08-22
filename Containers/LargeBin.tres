@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemContainer" load_steps=2 format=3 uid="uid://hp6ovxvm4020"]
+
+[ext_resource type="Script" path="res://Containers/ItemContainer.gd" id="1_r3wmc"]
+
+[resource]
+script = ExtResource("1_r3wmc")
+capacity = 80.0
+name = "Large Bin"
+weight = 2.0
+size = 81.0
+base_price = 5.0
