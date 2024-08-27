@@ -50,4 +50,7 @@ func on_mouse_exited():
 	# hide the MeshInstance3D child
 	$MeshInstance3D.visible = false
 
+#func on_click():
+	# show a UI dropdown for creating a decorator
+
 

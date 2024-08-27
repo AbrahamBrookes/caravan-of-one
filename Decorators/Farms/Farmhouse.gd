@@ -1,4 +1,4 @@
-extends Node3D
+extends Decorator
 
 # the Farmhouse is a decorator that provides a farming family to the surrounding countryside.
 # A Farmhouse has linked plots, and every day a labourer will sally forth from the farmhouse
@@ -15,33 +15,6 @@ extends Node3D
 # a list of labourers available in this farmhouse
 var labourers = []
 
-# a link to the TerrainSquare on which this decorator sits
-var square:TerrainSquare
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# create 5 labourers in our house
-	labourers = [
-		Farmer.new(),
-		Farmer.new(),
-		Farmer.new(),
-		Farmer.new(),
-		Farmer.new(),
-	]
-
-
-# Called when the sun rises
-func daybreak():
-	pass
-
-func morning():
-	pass
-
-func midday():
-	pass
-
-func dusk():
-	pass
-
-func evening():
 	pass

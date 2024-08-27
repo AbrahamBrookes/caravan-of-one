@@ -9,8 +9,16 @@ var TerrainSquareScn = preload("res://Terrain/TerrainSquare.tscn")
 # the amount of increase for vert heights
 @export var heightStep = 0.5
 
+# where we are going to save the serialized terrain_data array
+var terrain_data_file_path: String = "user://terrain_data.dat"
+var terrain_squares_file_path: String = "user://terrain_squares.dat"
+
 # a dictionary where each key is a Vector2 and each value is a float (the Y position).
+# this is used to generate our terrain mesh
 var terrain_data: Dictionary
+
+# a dictionary of TerrainSquareTempates keyed by V2 locations
+var terrain_squares: Dictionary
 
 # a function to generate terrain data
 func generate_terrain_data() -> Dictionary:
@@ -23,15 +31,51 @@ func generate_terrain_data() -> Dictionary:
 			terrain_data[position] = height
 			# also allow for the middle vertices
 			terrain_data[position + Vector2(0.5, 0.5)] = height
+			# create a terrain square resource at this grid location
+			var terrain_square = TerrainSquareTemplate.new()
+
+			# Set the properties of the instance
+			terrain_square.x = x
+			terrain_square.z = z
+			
+			# load it into the grid
+			terrain_squares[position] = terrain_square
+	
+	serializeTerrainData(terrain_data)
+	
+	# serialize the terrain_squares to a file
+	var terrain_squares_file = FileAccess.open(terrain_squares_file_path, FileAccess.WRITE)
+	if terrain_squares_file:
+		terrain_squares_file.store_var(terrain_squares)
+		terrain_squares_file.close()
+	else:
+		print("Error saving terrain_squares_file - file is null")
+		
 	return terrain_data
 
+# save the terrain_data to a file
+func serializeTerrainData(terrain_data):
+	# serialize the terrain_data to a file
+	var terrain_data_file = FileAccess.open(terrain_data_file_path, FileAccess.WRITE)
+	if terrain_data_file:
+		terrain_data_file.store_var(terrain_data)
+		terrain_data_file.close()
+	else:
+		print("Error saving terrain_data_file - file is null")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.terrain_data = generate_terrain_data()
 	gen_mesh()
 	
 func gen_mesh():
+	# if we have a serialized file, load it
+	if FileAccess.file_exists(terrain_data_file_path):
+		var file = FileAccess.open(terrain_data_file_path, FileAccess.READ)
+		self.terrain_data = file.get_var()
+		file.close()
+	else: 
+		self.terrain_data = generate_terrain_data()
+	
 	# clear all the TerrainVertexes and TerrainSquares
 	for child in $TerrainVertexes.get_children():
 		child.queue_free()
@@ -203,8 +247,8 @@ func onModifyVertex(vertex: Vector2, modify: float):
 					if self.terrain_data[top_left] == self.terrain_data[bottom_left] and self.terrain_data[top_left] != self.terrain_data[top_right]:
 						self.terrain_data[middleVert] = (self.terrain_data[top_left] + self.terrain_data[top_right]) / 2
 						continue
-
-	
+						
+	serializeTerrainData(self.terrain_data)
 	gen_mesh()
 	
 func surroundingVertsTooSteep(vertex: Vector2, modify: float):
@@ -239,7 +283,6 @@ func _init():
 	RenderingServer.set_debug_generate_wireframes(true)
 
 func _input(event):
-			
 	if event is InputEventKey and Input.is_key_pressed(KEY_P):
 		var vp = get_viewport()
 		vp.debug_draw = (vp.debug_draw + 1 ) % 5

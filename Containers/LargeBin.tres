@@ -10,6 +10,7 @@ item = ExtResource("1_0e3xx")
 quantity = 160
 size = 80.0
 weight = 32.0
+value = 192.0
 
 [resource]
 script = ExtResource("1_r3wmc")
