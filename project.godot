@@ -11,6 +11,10 @@ config_version=5
 [application]
 
 config/name="Caravan Of One"
-run/main_scene="res://Terrain/test.tscn"
+run/main_scene="res://Terrain/TTDstyle/test.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+InGameUI="*res://Singletons/InGameUI.tscn"

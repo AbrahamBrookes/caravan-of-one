@@ -9,12 +9,9 @@ extends Decorator
 # a list of linked plots
 @export var plots:Array[FarmPlot] = []
 
-# a list of containers that are on site
-@export var containers:Array[ItemContainer] = []
-
 # a list of labourers available in this farmhouse
 var labourers = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	print('farmhouse ready')

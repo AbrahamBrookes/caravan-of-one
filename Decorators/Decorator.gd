@@ -4,8 +4,8 @@ class_name Decorator
 # Decorator is a thing that resides at some grid location. Generally a building
 # or perhaps something less permanent
 
-# a link to the TerrainSquare on which this decorator sits
-var square:TerrainSquare
+# a link to the TerrainCube on which this decorator sits
+var terrainCube:TerrainCube
 
 # Methods for key moments during the day
 func daybreak():
@@ -22,3 +22,9 @@ func dusk():
 
 func evening():
 	pass
+
+# a method for dehydrating this scene for serialization
+func dehydrate():
+	return {
+		"name": get_class(),
+	}
