@@ -1,4 +1,5 @@
 extends Decorator
+class_name Farmhouse
 
 # the Farmhouse is a decorator that provides a farming family to the surrounding countryside.
 # A Farmhouse has linked plots, and every day a labourer will sally forth from the farmhouse

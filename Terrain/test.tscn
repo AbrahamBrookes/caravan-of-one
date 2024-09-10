@@ -6,7 +6,7 @@
 script = ExtResource("1_i2d4a")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.285822, 0.958283, 0, -0.958283, 0.285822, 51.7401, 81.6363, 77.0436)
+transform = Transform3D(1, 0, 0, 0, 0.285822, 0.958283, 0, -0.958283, 0.285822, 51.7401, 35.3595, 77.0436)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.467081, 0.884214, 0, -0.884214, 0.467081, 0, 87.6267, 90.195)

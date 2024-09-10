@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvfnt83tdb3ls"]
+
+[ext_resource type="Texture2D" uid="uid://cykwlhdp6t3dn" path="res://Textures/Grass/grass.png" id="1_dfgw1"]
+[ext_resource type="Script" path="res://Terrain/TerrainCube.gd" id="2_24e70"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xx4pi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mrc3"]
+albedo_texture = ExtResource("1_dfgw1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_058yu"]
+
+[node name="TerrainCube" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_xx4pi")
+surface_material_override/0 = SubResource("StandardMaterial3D_7mrc3")
+script = ExtResource("2_24e70")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_058yu")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.36291)
+
+[connection signal="input_event" from="StaticBody3D" to="." method="click"]
+[connection signal="mouse_entered" from="StaticBody3D" to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="StaticBody3D" to="." method="on_mouse_exited"]

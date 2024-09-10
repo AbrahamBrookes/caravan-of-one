@@ -7,6 +7,10 @@ class_name Decorator
 # a link to the TerrainCube on which this decorator sits
 var terrainCube:TerrainCube
 
+# decorators are clickable
+func click():
+	print("this decorator does not have a click function implemented")
+
 # Methods for key moments during the day
 func daybreak():
 	pass

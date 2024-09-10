@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://buq7eyq4stfad"]
+
+[ext_resource type="Script" path="res://Decorators/Towns/Blacksmith/Blacksmith.gd" id="1_ft6ky"]
+[ext_resource type="PackedScene" uid="uid://d08bmnq7dj1nc" path="res://Decorators/Towns/Blacksmith/Blacksmith.glb" id="2_7a05i"]
+
+[node name="Blacksmith" type="Node3D"]
+script = ExtResource("1_ft6ky")
+
+[node name="Blacksmith" parent="." instance=ExtResource("2_7a05i")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1, 0)
