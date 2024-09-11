@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 InGameUI="*res://Singletons/InGameUI.tscn"
+GameInput="*res://Singletons/GameModes/GameInputMode.tscn"

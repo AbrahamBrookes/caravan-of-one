@@ -1,17 +1,5 @@
 extends Control
 
-# an enum for game mode, that we can check to figure out what to do when clicking a cube
-enum GameMode {
-	BASE,
-	SPAWNING
-}
-
-# the current game mode
-var current_game_mode : GameMode = GameMode.BASE
-
-# the name of the decorator we are currently spawning
-var decorator_to_spawn : String = ""
-
 func showElement(node : String, data : Dictionary = {}):
 	# show the child node using the string as the name
 	var child = get_node(node)
@@ -32,6 +20,5 @@ func hideElement(node : String):
 		print("Child node not found: ", node)
 
 func setSpawning(decorator: String):
-	current_game_mode = GameMode.SPAWNING
-	decorator_to_spawn = decorator
+	GameInput.setGameMode(GameModeEnum.SPAWNING_BUILDINGS, decorator)
 

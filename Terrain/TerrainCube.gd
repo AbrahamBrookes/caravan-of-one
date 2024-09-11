@@ -12,7 +12,8 @@ var possibleDecorators : Dictionary = {
 	"TownMarker": preload("res://Decorators/Towns/TownMarker/TownMarker.tscn"),
 	"Marketplace": preload("res://Decorators/Towns/Marketplace/Marketplace.tscn"),
 	"Blacksmith": preload("res://Decorators/Towns/Blacksmith/Blacksmith.tscn"),
-	"Farmhouse": preload("res://Decorators/Farms/Farmhouse.tscn")
+	"Farmhouse": preload("res://Decorators/Farms/Farmhouse.tscn"),
+	"Road": preload("res://Decorators/Farms/Farmhouse.tscn")
 }
 
 # mouse signals
@@ -31,11 +32,7 @@ func on_mouse_exited():
 # an incoming click event - delegated down to the Decorator if exists
 func click(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		if decorator:
-			decorator.click()
-		else:
-			if InGameUI.current_game_mode == InGameUI.GameMode.SPAWNING:
-				spawnDecorator(InGameUI.decorator_to_spawn)
+		GameInput.click(self)
 
 # a method for deserializing yourself based on passed hydration data
 func hydrate(data, terrain : TerrainCubeRegion):
@@ -66,3 +63,6 @@ func spawnDecorator(name : String):
 		add_child(decorator)
 	else:
 		print(name + " not found in list of spawnable decorators")
+
+func handleRoadSpawnClick():
+	spawnDecorator("Road")

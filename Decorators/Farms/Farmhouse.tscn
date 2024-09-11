@@ -1,15 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnhghmrdi13qx"]
+[gd_scene load_steps=3 format=3 uid="uid://dtwit058nnhmt"]
 
-[ext_resource type="Script" path="res://Decorators/Farms/Farmhouse.gd" id="1_qqk7l"]
-[ext_resource type="PackedScene" uid="uid://ca8uity3ckhw" path="res://Decorators/Farms/Farm.glb" id="2_ksnlu"]
-[ext_resource type="PackedScene" uid="uid://cb7st07vh0gdb" path="res://Containers/Containers.tscn" id="2_viuse"]
-[ext_resource type="Resource" uid="uid://hp6ovxvm4020" path="res://Containers/LargeBin.tres" id="3_cunad"]
+[ext_resource type="Script" path="res://Decorators/Farms/Farmhouse.gd" id="1_3tnss"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_60g7b"]
 
 [node name="Farmhouse" type="Node3D"]
-script = ExtResource("1_qqk7l")
+script = ExtResource("1_3tnss")
 
-[node name="Farm" parent="." instance=ExtResource("2_ksnlu")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.350934, 1, -0.314379)
-
-[node name="Containers" parent="." instance=ExtResource("2_viuse")]
-containers = Array[Resource("res://Containers/ItemContainer.gd")]([ExtResource("3_cunad")])
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_60g7b")

@@ -43,12 +43,21 @@ offset_bottom = 111.0
 text = "Blacksmith"
 
 [node name="Farmhouse" type="Button" parent="."]
+layout_mode = 0
 offset_top = 120.0
 offset_right = 105.0
 offset_bottom = 151.0
 text = "Farmhouse"
 
+[node name="Road" type="Button" parent="."]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 105.0
+offset_bottom = 191.0
+text = "Road"
+
 [connection signal="pressed" from="TownCenter" to="." method="setSpawning" binds= ["TownMarker"]]
 [connection signal="pressed" from="Marketplace" to="." method="setSpawning" binds= ["Marketplace"]]
 [connection signal="pressed" from="Blacksmith" to="." method="setSpawning" binds= ["Blacksmith"]]
 [connection signal="pressed" from="Farmhouse" to="." method="setSpawning" binds= ["Farmhouse"]]
+[connection signal="pressed" from="Road" to="." method="setSpawning" binds= ["Road"]]
