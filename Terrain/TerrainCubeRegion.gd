@@ -80,6 +80,10 @@ func hydrate():
 						inst.hydrate(terrain_data[position], self)
 					# push it into the cubes dictionary
 					cubes[position] = inst
+	
+	# now that we have our cubes spawned, pre-cache their neighbours
+	for location in cubes:
+		cubes[location].cacheNeighbours()
 
 # a method to dehydrate the terrain and get data for serialization
 func dehydrate():
@@ -95,3 +99,4 @@ func getCubeAtPosition(position: Vector3):
 		return cubes[position]
 	else:
 		push_error("attempted to get a cube but not found")
+

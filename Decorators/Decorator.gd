@@ -5,7 +5,7 @@ class_name Decorator
 # or perhaps something less permanent
 
 # a link to the TerrainCube on which this decorator sits
-var terrainCube:TerrainCube
+var terrainCube : TerrainCube
 
 # decorators are clickable
 func click():

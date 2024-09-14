@@ -20,5 +20,8 @@ func hideElement(node : String):
 		print("Child node not found: ", node)
 
 func setSpawning(decorator: String):
+	if decorator == "Road":
+		GameInput.setGameMode(GameModeEnum.SPAWNING_ROADS)
+		return
 	GameInput.setGameMode(GameModeEnum.SPAWNING_BUILDINGS, decorator)
 
