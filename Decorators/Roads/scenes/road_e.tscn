@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://3467ie2ryfaa"]
+
+[ext_resource type="Script" path="res://Decorators/Farms/Labourers/Farmer.gd" id="1_proj2"]
+[ext_resource type="PackedScene" uid="uid://344t3y0xd1rv" path="res://Decorators/Roads/meshes/road_straight.glb" id="2_rqygh"]
+
+[node name="road_e" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, 0)
+script = ExtResource("1_proj2")
+
+[node name="road_straight" parent="." instance=ExtResource("2_rqygh")]
+transform = Transform3D(0.5, 0, -1.77636e-15, 0, 0.5, 0, 1.77636e-15, 0, 0.5, 0, 0, 0)

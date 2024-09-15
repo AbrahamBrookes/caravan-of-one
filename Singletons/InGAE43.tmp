@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ys0l68xdayc"]
+
+[ext_resource type="Script" path="res://Singletons/InGameUI.gd" id="1_1a1pa"]
+
+[node name="InGameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_1a1pa")
+
+[node name="SpawnMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="TownCenter" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "TownCenter"
+
+[node name="Marketplace" type="Button" parent="."]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 105.0
+offset_bottom = 71.0
+text = "Marketplace"
+
+[node name="Blacksmith" type="Button" parent="."]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 105.0
+offset_bottom = 111.0
+text = "Blacksmith"
+
+[node name="Farmhouse" type="Button" parent="."]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 105.0
+offset_bottom = 151.0
+text = "Farmhouse"
+
+[node name="Road" type="Button" parent="."]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 105.0
+offset_bottom = 191.0
+text = "Road"
+
+[connection signal="pressed" from="TownCenter" to="." method="setSpawning" binds= ["TownCenter"]]
+[connection signal="pressed" from="Marketplace" to="." method="setSpawning" binds= ["Marketplace"]]
+[connection signal="pressed" from="Blacksmith" to="." method="setSpawning" binds= ["Blacksmith"]]
+[connection signal="pressed" from="Farmhouse" to="." method="setSpawning" binds= ["Farmhouse"]]
+[connection signal="pressed" from="Road" to="." method="setSpawning" binds= ["Road"]]

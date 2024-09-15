@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyjfa6yds2wk3"]
+
+[ext_resource type="Script" path="res://Terrain/TerrainCubeRegion.gd" id="1_lchha"]
+[ext_resource type="Script" path="res://Terrain/PrimaryIndustrySpawner.gd" id="2_yxxqd"]
+[ext_resource type="Script" path="res://Decorators/Towns/Town.gd" id="3_j7jbk"]
+
+[node name="TerrainCubeRegion" type="Node3D"]
+script = ExtResource("1_lchha")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.285822, 0.958283, 0, -0.958283, 0.285822, 51.7401, 69.383, 77.0436)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.467081, 0.884214, 0, -0.884214, 0.467081, 0, 87.6267, 90.195)
+
+[node name="PrimaryIndustrySpawner" type="Node" parent="."]
+script = ExtResource("2_yxxqd")
+
+[node name="Town" type="Node" parent="."]
+script = ExtResource("3_j7jbk")

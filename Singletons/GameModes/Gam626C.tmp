@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c67m6lug87440"]
+
+[ext_resource type="Script" path="res://Singletons/GameModes/GameInputMode.gd" id="1_8cdwv"]
+[ext_resource type="Script" path="res://Singletons/GameModes/BasicGameInputMode.gd" id="2_1v6dx"]
+[ext_resource type="Script" path="res://Singletons/GameModes/SpawningRoadsGameMode.gd" id="3_1kckl"]
+[ext_resource type="Script" path="res://Singletons/GameModes/SpawningBuildingsGameInputMode.gd" id="4_ckmol"]
+
+[node name="GameMode" type="Node"]
+script = ExtResource("1_8cdwv")
+
+[node name="BasicGameInputMode" type="Node" parent="."]
+script = ExtResource("2_1v6dx")
+
+[node name="SpawningBuildingsGameInputMode" type="Node" parent="."]
+script = ExtResource("4_ckmol")
+
+[node name="SpawningRoadsGameInputMode" type="Node" parent="."]
+script = ExtResource("3_1kckl")

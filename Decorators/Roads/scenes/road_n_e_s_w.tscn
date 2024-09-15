@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm6w6xoktflwc"]
+
+[ext_resource type="Script" path="res://Decorators/Farms/Labourers/Farmer.gd" id="1_3kely"]
+[ext_resource type="PackedScene" uid="uid://bchffbwjxdy8v" path="res://Decorators/Roads/meshes/road_junction.glb" id="2_qmgdq"]
+
+[node name="road_n_e_s_w" type="Node3D"]
+script = ExtResource("1_3kely")
+
+[node name="road_junction" parent="." instance=ExtResource("2_qmgdq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.1, 0)
