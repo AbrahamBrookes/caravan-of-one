@@ -14,5 +14,31 @@ class_name Farmhouse
 var labourers = []
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	print('farmhouse ready')
+#func _ready():
+	#if plots.size() == 0:
+#		spawnPlots()
+
+# A Farmhouse is always surrounded by plots
+func spawnPlots():
+	# get the region
+	var region = terrainCube.region
+	# an array of location offsets to loop through
+	var offsets = [
+		Vector3(-1, 0, -1),
+		Vector3(0,  0, -1),
+		Vector3(1,  0, -1),
+		Vector3(-1, 0, 0),
+		Vector3(1,  0, 0),
+		Vector3(-1, 0, 1),
+		Vector3(0,  0, 1),
+		Vector3(1,  0, 1)
+	]
+	# loop through the offsets and spawn a marketplace at each location
+	for offset in offsets:
+		var cube = region.getCubeAtPosition(terrainCube.position + offset)
+		# add the marketplace to the terrainCube
+		cube.spawnDecorator("FarmPlot")
+		# add the marketplace to the plots array
+		plots.append(cube.decorator as FarmPlot)
+		#set this Farmhouse as the parent of the FarmPlot
+		cube.decorator.farmhouse = self

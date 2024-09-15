@@ -35,6 +35,12 @@ func _ready():
 
 	# now that we have loaded the data, hydrate it
 	hydrate()
+	
+	# and we can spawn primary industries
+	$PrimaryIndustrySpawner.region = self
+	$PrimaryIndustrySpawner.spawnFarm()
+	$PrimaryIndustrySpawner.spawnTown()
+	$PrimaryIndustrySpawner.connectCubes($PrimaryIndustrySpawner.farm, $PrimaryIndustrySpawner.town)
 
 # a function to generate terrain data which will then be used for hydrating the scene
 func generate_terrain_data():
@@ -42,7 +48,7 @@ func generate_terrain_data():
 	
 	for x in width:
 		for z in depth:
-			# let's just generate a single layer at the 25 location for now
+			# let's just generate a single layer at the 0 location for now
 			var position = Vector3(x, 0, z)
 			# we are not instantiating scenes at this point, this is just a raw data layer
 			# save this to the dictionary
@@ -84,6 +90,7 @@ func hydrate():
 	# now that we have our cubes spawned, pre-cache their neighbours
 	for location in cubes:
 		cubes[location].cacheNeighbours()
+	
 
 # a method to dehydrate the terrain and get data for serialization
 func dehydrate():
@@ -98,5 +105,5 @@ func getCubeAtPosition(position: Vector3):
 	if cubes.has(position):
 		return cubes[position]
 	else:
-		push_error("attempted to get a cube but not found")
+		push_error("attempted to get a cube but not found", position)
 

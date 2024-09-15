@@ -19,3 +19,4 @@ config/icon="res://icon.svg"
 
 InGameUI="*res://Singletons/InGameUI.tscn"
 GameInput="*res://Singletons/GameModes/GameInputMode.tscn"
+Helpers="*res://Singletons/Helpers.tscn"

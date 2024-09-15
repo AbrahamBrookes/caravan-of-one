@@ -10,9 +10,9 @@ var marketplaces:Array[Marketplace] = []
 var roads:Array[Road] = []
 
 # on start, we spawn the marketplaces
-func _ready():
-	if marketplaces.size() == 0:
-		spawnMarketplaces()
+#func _ready():
+#	if marketplaces.size() == 0:
+#		spawnMarketplaces()
 
 # A Town Marker is always surrounded by 8 marketplace tiles
 func spawnMarketplaces():

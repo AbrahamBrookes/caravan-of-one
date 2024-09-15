@@ -24,6 +24,7 @@ var possibleDecorators : Dictionary = {
 	"Marketplace": preload("res://Decorators/Towns/Marketplace/Marketplace.tscn"),
 	"Blacksmith": preload("res://Decorators/Towns/Blacksmith/Blacksmith.tscn"),
 	"Farmhouse": preload("res://Decorators/Farms/Farmhouse.tscn"),
+	"FarmPlot": preload("res://Decorators/Farms/FarmPlot.tscn"),
 	"Road": preload("res://Decorators/Roads/Road.tscn")
 }
 
@@ -68,13 +69,14 @@ func spawnDecorator(name : String):
 		print("already have a decorator")
 		return
 	# find the decorator in our dictionary
-	if possibleDecorators.has(name):
-		decorator = possibleDecorators[name].instantiate()
-		decorator.terrainCube = self
-		add_child(decorator)
-		decoratorName = name
-	else:
+	if not possibleDecorators.has(name):
 		print(name + " not found in list of spawnable decorators")
+		return
+		
+	decorator = possibleDecorators[name].instantiate()
+	decorator.terrainCube = self
+	add_child(decorator)
+	decoratorName = name
 
 func destoryDecorator():
 	if not decorator:
