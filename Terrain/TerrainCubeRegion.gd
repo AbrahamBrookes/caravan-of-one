@@ -13,6 +13,9 @@ class_name TerrainCubeRegion
 # our terrain cube scenes that we will instantiate
 var cube = load("res://Terrain/TerrainCube.tscn")
 
+# a registry of all the decorators in this region, for easier lookups
+var decorators
+
 # the location of the serialized file we use for saving/loading this region
 var terrain_data_file_path : String = "user://terrainData.dat"
 
@@ -36,11 +39,15 @@ func _ready():
 	# now that we have loaded the data, hydrate it
 	hydrate()
 	
-	# and we can spawn primary industries
 	$PrimaryIndustrySpawner.region = self
-	$PrimaryIndustrySpawner.spawnFarm()
-	$PrimaryIndustrySpawner.spawnTown()
-	$PrimaryIndustrySpawner.connectCubes($PrimaryIndustrySpawner.farm, $PrimaryIndustrySpawner.town)
+	
+	$Town.spawner = $PrimaryIndustrySpawner
+	$Town.initialSpawn()
+	
+	# and we can spawn primary industries
+	#$PrimaryIndustrySpawner.spawnFarm()
+	#$PrimaryIndustrySpawner.spawnTown()
+	#$PrimaryIndustrySpawner.connectCubes($PrimaryIndustrySpawner.farm, $PrimaryIndustrySpawner.town)
 
 # a function to generate terrain data which will then be used for hydrating the scene
 func generate_terrain_data():
@@ -104,6 +111,6 @@ func dehydrate():
 func getCubeAtPosition(position: Vector3):
 	if cubes.has(position):
 		return cubes[position]
-	else:
-		push_error("attempted to get a cube but not found", position)
+	#else:
+	#	push_error("attempted to get a cube but not found", position)
 

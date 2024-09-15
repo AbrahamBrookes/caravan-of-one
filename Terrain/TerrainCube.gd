@@ -20,12 +20,13 @@ var decoratorName : String
 
 # a list of Decorator types that may be spawned on this cube
 var possibleDecorators : Dictionary = {
-	"TownMarker": preload("res://Decorators/Towns/TownMarker/TownMarker.tscn"),
+	"TownCenter": preload("res://Decorators/Towns/TownCenter/TownCenter.tscn"),
 	"Marketplace": preload("res://Decorators/Towns/Marketplace/Marketplace.tscn"),
 	"Blacksmith": preload("res://Decorators/Towns/Blacksmith/Blacksmith.tscn"),
 	"Farmhouse": preload("res://Decorators/Farms/Farmhouse.tscn"),
 	"FarmPlot": preload("res://Decorators/Farms/FarmPlot.tscn"),
-	"Road": preload("res://Decorators/Roads/Road.tscn")
+	"Road": preload("res://Decorators/Roads/Road.tscn"),
+	"House": preload("res://Decorators/Towns/House/House.tscn"),
 }
 
 # mouse signals
@@ -63,7 +64,7 @@ func dehydrate():
 	
 	return data
 
-func spawnDecorator(name : String):
+func spawnDecorator(name : String) -> TerrainCube:
 	# only do this if we don't already have a decorator
 	if decorator:
 		print("already have a decorator")
@@ -77,6 +78,7 @@ func spawnDecorator(name : String):
 	decorator.terrainCube = self
 	add_child(decorator)
 	decoratorName = name
+	return self
 
 func destoryDecorator():
 	if not decorator:

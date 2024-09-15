@@ -56,7 +56,7 @@ offset_right = 105.0
 offset_bottom = 191.0
 text = "Road"
 
-[connection signal="pressed" from="TownCenter" to="." method="setSpawning" binds= ["TownMarker"]]
+[connection signal="pressed" from="TownCenter" to="." method="setSpawning" binds= ["TownCenter"]]
 [connection signal="pressed" from="Marketplace" to="." method="setSpawning" binds= ["Marketplace"]]
 [connection signal="pressed" from="Blacksmith" to="." method="setSpawning" binds= ["Blacksmith"]]
 [connection signal="pressed" from="Farmhouse" to="." method="setSpawning" binds= ["Farmhouse"]]

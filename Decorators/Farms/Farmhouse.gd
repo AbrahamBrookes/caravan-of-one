@@ -15,7 +15,7 @@ var labourers = []
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
-	#if plots.size() == 0:
+#	if plots.size() == 0:
 #		spawnPlots()
 
 # A Farmhouse is always surrounded by plots
